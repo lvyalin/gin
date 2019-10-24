@@ -17,6 +17,7 @@ import (
 	"runtime"
 	"strings"
 	"time"
+	"github.com/lvyalin/gin/internal/json"
 )
 
 var (
@@ -28,7 +29,7 @@ var (
 
 // Recovery returns a middleware that recovers from any panics and writes a 500 if there was one.
 func Recovery() HandlerFunc {
-	return RecoveryWithWriter(DefaultErrorWriter)
+	return RecoveryWithWriter(DefaultWriter)
 }
 
 // RecoveryWithWriter returns a middleware for a given writer that recovers from any panics and writes a 500 if there was one.
@@ -53,22 +54,19 @@ func RecoveryWithWriter(out io.Writer) HandlerFunc {
 				if logger != nil {
 					stack := stack(3)
 					httpRequest, _ := httputil.DumpRequest(c.Request, false)
-					headers := strings.Split(string(httpRequest), "\r\n")
-					for idx, header := range headers {
-						current := strings.Split(header, ":")
-						if current[0] == "Authorization" {
-							headers[idx] = current[0] + ": *"
-						}
-					}
-					if brokenPipe {
-						logger.Printf("%s\n%s%s", err, string(httpRequest), reset)
-					} else if IsDebugging() {
-						logger.Printf("[Recovery] %s panic recovered:\n%s\n%s\n%s%s",
-							timeFormat(time.Now()), strings.Join(headers, "\r\n"), err, stack, reset)
-					} else {
-						logger.Printf("[Recovery] %s panic recovered:\n%s\n%s%s",
-							timeFormat(time.Now()), err, stack, reset)
-					}
+
+					requestId, _ := c.Get("requestId")
+					path := c.Request.URL.RequestURI()
+					info, _ := json.Marshal(map[string]interface{}{
+						"time":        time.Now().Format("2006-01-02 15:04:05"),
+						"level":       "error",
+						"module":      "stack",
+						"requestId":   requestId,
+						"httpRequest": string(httpRequest),
+						"path":        path,
+						"msg":         err,
+					})
+					logger.Printf("%s\n-------------------stack-start-------------------\n%s\n-------------------stack-end-------------------\n", string(info), stack)
 				}
 
 				// If the connection is dead, we can't write a status to it.

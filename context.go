@@ -19,8 +19,8 @@ import (
 	"time"
 
 	"github.com/gin-contrib/sse"
-	"github.com/gin-gonic/gin/binding"
-	"github.com/gin-gonic/gin/render"
+	"github.com/lvyalin/gin/binding"
+	"github.com/lvyalin/gin/render"
 )
 
 // Content-Type MIME of the most common data formats.
@@ -67,6 +67,20 @@ type Context struct {
 	// formCache use url.ParseQuery cached PostForm contains the parsed form data from POST, PATCH,
 	// or PUT body parameters.
 	formCache url.Values
+	CustomContext CustomContext
+}
+
+type CustomContext struct {
+	Handle    func(*Context) error
+	Desc      string
+	Type      string
+	Error     error
+	StartTime time.Time
+	EndTime   time.Time
+}
+
+func (c *CustomContext) HandlerName() string {
+	return nameOfFunction(c.Handle)
 }
 
 /************************************/
@@ -84,6 +98,7 @@ func (c *Context) reset() {
 	c.Accepted = nil
 	c.queryCache = nil
 	c.formCache = nil
+	c.CustomContext = CustomContext{}
 }
 
 // Copy returns a copy of the current context that can be safely used outside the request's scope.

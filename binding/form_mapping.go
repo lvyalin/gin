@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gin-gonic/gin/internal/json"
+	"github.com/lvyalin/gin/internal/json"
 )
 
 var errUnknownType = errors.New("Unknown type")

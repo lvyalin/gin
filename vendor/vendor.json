@@ -149,5 +149,5 @@
 			"versionExact": "v2.2.2"
 		}
 	],
-	"rootPath": "github.com/gin-gonic/gin"
+	"rootPath": "github.com/lvyalin/gin"
 }

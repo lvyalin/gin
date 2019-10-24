@@ -18,7 +18,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gin-gonic/gin/testdata/protoexample"
+	"github.com/lvyalin/gin/testdata/protoexample"
 	"github.com/golang/protobuf/proto"
 	"github.com/stretchr/testify/assert"
 	"github.com/ugorji/go/codec"

@@ -14,3 +14,14 @@ func CreateTestContext(w http.ResponseWriter) (c *Context, r *Engine) {
 	c.writermem.reset(w)
 	return
 }
+
+func CreateNewContext(r *Engine) (c *Context) {
+	c = r.pool.Get().(*Context)
+	c.reset()
+	c.writermem.reset(nil)
+	return
+}
+
+func RecycleContext(r *Engine, c *Context) {
+	r.pool.Put(c)
+}
