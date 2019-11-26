@@ -2,7 +2,7 @@ package cycle
 
 import (
 	"fmt"
-	"github.com/lvyalin/gin"
+	"gin"
 	"testing"
 	"time"
 )

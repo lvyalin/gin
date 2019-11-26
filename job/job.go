@@ -2,7 +2,7 @@ package job
 
 import (
 	"encoding/json"
-	"github.com/lvyalin/gin"
+	"gin"
 	"log"
 	"runtime"
 	"time"

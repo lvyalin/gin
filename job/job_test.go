@@ -3,7 +3,7 @@ package job
 import (
 	"errors"
 	"fmt"
-	"github.com/lvyalin/gin"
+	"gin"
 	"sync"
 	"testing"
 	"time"

@@ -10,7 +10,7 @@ import (
 	"html/template"
 	"net/http"
 
-	"github.com/lvyalin/gin/internal/json"
+	"gin/internal/json"
 )
 
 // JSON contains the given interface object.

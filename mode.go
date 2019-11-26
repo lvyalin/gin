@@ -8,7 +8,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/lvyalin/gin/binding"
+	"gin/binding"
 )
 
 // EnvGinMode indicates environment name for gin mode.

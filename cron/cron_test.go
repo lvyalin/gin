@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/lvyalin/gin"
+	"gin"
 )
 
 // Many tests schedule a job for every second, and then wait at most a second

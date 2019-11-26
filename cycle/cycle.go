@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/lvyalin/gin"
+	"gin"
 )
 
 type Cycle struct {

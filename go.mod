@@ -1,4 +1,4 @@
-module github.com/lvyalin/gin
+module gin
 
 go 1.12
 

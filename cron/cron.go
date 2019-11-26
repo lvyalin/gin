@@ -7,7 +7,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/lvyalin/gin"
+	"gin"
 )
 
 // Cron keeps track of any number of entries, invoking the associated func as

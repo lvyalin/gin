@@ -8,7 +8,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/lvyalin/gin/binding"
+	"gin/binding"
 	"github.com/stretchr/testify/assert"
 )
 

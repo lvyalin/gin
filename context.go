@@ -19,8 +19,8 @@ import (
 	"time"
 
 	"github.com/gin-contrib/sse"
-	"github.com/lvyalin/gin/binding"
-	"github.com/lvyalin/gin/render"
+	"gin/binding"
+	"gin/render"
 )
 
 // Content-Type MIME of the most common data formats.

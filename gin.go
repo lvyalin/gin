@@ -13,7 +13,7 @@ import (
 	"path"
 	"sync"
 
-	"github.com/lvyalin/gin/render"
+	"gin/render"
 )
 
 const defaultMultipartMemory = 32 << 20 // 32 MB
